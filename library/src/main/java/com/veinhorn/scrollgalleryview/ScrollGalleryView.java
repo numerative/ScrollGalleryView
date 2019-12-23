@@ -192,6 +192,7 @@ public class ScrollGalleryView extends LinearLayout {
             }
 
             @Override public void onPageSelected(int position) {
+                changeImageDescription(position);
                 scroll(thumbnailsContainer.getChildAt(position));
                 listener.onPageSelected(position);
             }
