@@ -6,10 +6,6 @@ import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
-import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -19,6 +15,11 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.veinhorn.scrollgalleryview.builder.GalleryBuilder;
 import com.veinhorn.scrollgalleryview.builder.GalleryBuilderImpl;
@@ -59,7 +60,8 @@ public class ScrollGalleryView extends LinearLayout {
 
     // Listeners
     private final ViewPager.SimpleOnPageChangeListener viewPagerChangeListener = new ViewPager.SimpleOnPageChangeListener() {
-        @Override public void onPageSelected(int position) {
+        @Override
+        public void onPageSelected(int position) {
             scroll(thumbnailsContainer.getChildAt(position));
 
             changeImageDescription(position);
@@ -67,7 +69,8 @@ public class ScrollGalleryView extends LinearLayout {
     };
 
     private final OnClickListener thumbnailOnClickListener = new OnClickListener() {
-        @Override public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
             scroll(v);
 
             changeImageDescription(v.getId());
@@ -82,9 +85,16 @@ public class ScrollGalleryView extends LinearLayout {
      */
     private void changeImageDescription(int position) {
         if (mListOfMedia.get(position) != null) {
-            imageDescription.setText(mListOfMedia.get(position).getDescription());
+            String description = mListOfMedia.get(position).getDescription();
+            if (description != null && !description.isEmpty()) {
+                imageDescription.setVisibility(VISIBLE);
+                imageDescription.setText(mListOfMedia.get(position).getDescription());
+            } else {
+                imageDescription.setVisibility(GONE);
+            }
         } else {
             imageDescription.setText("");
+            imageDescription.setVisibility(GONE);
         }
     }
 
@@ -155,7 +165,6 @@ public class ScrollGalleryView extends LinearLayout {
     }
 
     /**
-     *
      * @return inner ViewPager
      */
     public ViewPager getViewPager() {
@@ -165,6 +174,7 @@ public class ScrollGalleryView extends LinearLayout {
     /**
      * Set up OnImageClickListener for your gallery images
      * You should set OnImageClickListener only before setFragmentManager call!
+     *
      * @param onImageClickListener which is called when you click on image
      * @return ScrollGalleryView
      */
@@ -180,6 +190,7 @@ public class ScrollGalleryView extends LinearLayout {
 
     /**
      * Add OnPageChangeListener for internal ViewPager
+     *
      * @param listener is an OnPageChange listener which is used by internal ViewPager
      * @return ScrollGalleryView object
      */
@@ -187,17 +198,20 @@ public class ScrollGalleryView extends LinearLayout {
         viewPager.clearOnPageChangeListeners();
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 listener.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
-            @Override public void onPageSelected(int position) {
+            @Override
+            public void onPageSelected(int position) {
                 changeImageDescription(position);
                 scroll(thumbnailsContainer.getChildAt(position));
                 listener.onPageSelected(position);
             }
 
-            @Override public void onPageScrollStateChanged(int state) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
                 listener.onPageScrollStateChanged(state);
             }
         });
@@ -267,6 +281,7 @@ public class ScrollGalleryView extends LinearLayout {
 
     /**
      * If you enabled this option, hideThumbnailsOnClick() method will not work
+     *
      * @param isThumbnailsHidden hides thumbnails container
      * @return ScrollGalleryView
      */
@@ -282,8 +297,8 @@ public class ScrollGalleryView extends LinearLayout {
     }
 
     /**
-     *
      * Keep in mind that this method do not work with enabled isThumbnailsHidden option
+     *
      * @param hideThumbnailsOnClick hides thumbnails container on image click
      * @return ScrollGalleryView
      */
@@ -296,10 +311,10 @@ public class ScrollGalleryView extends LinearLayout {
     }
 
     /**
-     *
      * Keep in mind that this method do not work with enabled isThumbnailsHidden option
+     *
      * @param hideThumbnailsOnClick hides thumbnails container on image click
-     * @param thumbnailsTransition null is used to disable transation
+     * @param thumbnailsTransition  null is used to disable transation
      * @return ScrollGalleryView
      */
     public ScrollGalleryView hideThumbnailsOnClick(boolean hideThumbnailsOnClick, Transition thumbnailsTransition) {
@@ -312,6 +327,7 @@ public class ScrollGalleryView extends LinearLayout {
 
     /**
      * Automatically hide thumbnails container after specified delay
+     *
      * @param hideThumbnailsAfterDelay delay in ms
      * @return ScrollGalleryView
      */
