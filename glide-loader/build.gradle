@@ -32,7 +32,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    implementation project(':subProjects:ScrollGalleryView:library')
+    implementation project(path: ':library')
 }
 
 ext {
