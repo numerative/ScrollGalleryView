@@ -1,12 +1,12 @@
 package com.veinhorn.scrollgalleryview;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.veinhorn.scrollgalleryview.loader.MediaLoader;
@@ -62,7 +62,7 @@ public class ImageFragment extends Fragment {
 
         viewPager = (HackyViewPager) getActivity().findViewById(R.id.viewPager);
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null && viewPager != null) {
             boolean isLocked = savedInstanceState.getBoolean(Constants.IS_LOCKED, false);
             viewPager.setLocked(isLocked);
         }
