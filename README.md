@@ -1,3 +1,10 @@
+>Note: This is a *modified fork* of the VEINHORN/ScrollGalleryView library and is downloadable from jitpack using the below dependencies.
+>**Notable changes in this fork:**
+>  - Fix issue with caption not changing upon scroll.
+>  - Captions are displayed on center top and have a greyish background for visibility. Also, font size is larger.
+>  - Migrated to AndroidX support libraries.
+>Issues and Pull Requests welcomed.
+
 # ScrollGalleryView
 
 [![Build Status](https://travis-ci.org/VEINHORN/ScrollGalleryView.svg?branch=master)](https://travis-ci.org/VEINHORN/ScrollGalleryView)
@@ -31,7 +38,7 @@ allprojects {
 Add dependency to your module `build.gradle`:
 
 ```gradle
-implementation 'com.veinhorn.scrollgalleryview:library:1.2.8'
+implementation 'com.github.numerative.ScrollGalleryView:library:1.2.8-numerative-fork'
 ```
 
 ### MediaLoaders
@@ -41,19 +48,19 @@ There are several MediaLoaders implementations for most popular caching librarie
 #### Picasso
 
 ```gradle
-implementation 'com.veinhorn.scrollgalleryview:picasso-loader:1.2.8'
+implementation 'com.github.numerative.ScrollGalleryView:picasso-loader:1.2.8-numerative-fork'
 ```
 
 #### Glide
 
 ```gradle
-implementation 'com.veinhorn.scrollgalleryview:glide-loader:1.2.8'
+implementation 'com.github.numerative.ScrollGalleryView:glide-loader:1.2.8-numerative-fork'
 ```
 
 #### Fresco
 
 ```gradle
-implementation 'com.veinhorn.scrollgalleryview:fresco-loader:1.2.8'
+implementation 'com.github.numerative.ScrollGalleryView:fresco-loader:1.2.8-numerative-fork'
 ```
 
 ## Usage
