@@ -100,4 +100,11 @@ public class ImageFragment extends Fragment {
     private boolean isBackgroundImageActive() {
         return photoView != null && photoView.getDrawable() != null;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        viewPager = null;
+        photoView = null;
+    }
 }
